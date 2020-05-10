@@ -9,6 +9,8 @@
 <body>
     <!-- カメラ映像 -->
     <video id="my-video" width=400px autoplay muted playsinline></video>
+    <p>自身のID</p>
+    <p id="my-id"></p>
     <!-- カメラ切り替えボタン -->
     <button type="button" id="btn-toggle">カメラ切替</button>
 </body>
@@ -23,13 +25,25 @@
 
     //カメラリソース
     let localStream = null;
+
+    //Peer生成
+    const peer = new Peer({
+      key: '09b3421c-51f8-4448-98b5-0508191f097e',
+      debug: 3
+    });
   
     window.onload = () => {
       let userFront = false;
 
+      //自PeerId取得
+      peer.on('open', () => {
+        document.getElementById('my-id').textContent = peer.id;
+      })
+
+      //自カメラ同期
       syncCamera(userFront);
 
-      //カメラ切替ボタンクリック時のイベント
+      //カメラ切替ボタンクリック時のイベント設定
       document.querySelector("#btn-toggle").addEventListener("click", () =>{
         userFront = !userFront;
         syncCamera(userFront);
