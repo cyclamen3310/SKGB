@@ -27,19 +27,19 @@
     let localStream = null;
 
     //Peer生成
-    const peer = new Peer({
-      key: '09b3421c-51f8-4448-98b5-0508191f097e',
+    const peer = (window.peer = new Peer({
+      key: "09b3421c-51f8-4448-98b5-0508191f097e",
       debug: 3
-    });
+    }));
   
+    //自PeerId取得
+    peer.once("open", () => {
+      document.getElementById('my-id').textContent = peer.id;
+    });
+
     window.onload = () => {
       let userFront = false;
-
-      //自PeerId取得
-      peer.on('open', () => {
-        document.getElementById('my-id').textContent = peer.id;
-      })
-
+      
       //自カメラ同期
       syncCamera(userFront);
 
@@ -68,6 +68,7 @@
         .then( stream => {
         // 成功時にvideo要素にカメラ映像をセットし、再生
         const videoElm = document.getElementById('my-video')
+        videoElm.muted = true;
         videoElm.srcObject = stream;
         videoElm.play();
         // 着信時に相手にカメラ映像を返せるように、グローバル変数に保存しておく
