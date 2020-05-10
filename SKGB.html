@@ -32,7 +32,7 @@
       //カメラ切替ボタンクリック時のイベント
       document.querySelector("#btn-toggle").addEventListener("click", () =>{
         userFront = !userFront;
-        syncCamera(video, userFront);
+        syncCamera(userFront);
       });
     };
 
