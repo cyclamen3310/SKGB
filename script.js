@@ -36,6 +36,9 @@ window.onload = () => {
 /*
   自身のカメラ同期
 */
+const myVideo = document.getElementById('my-video');
+const myCanvas = document.getElementById('myCanvas');
+const context = myCanvas.getContext('2d');
 function syncCamera(is_front){
   //使用するカメラを決定
   CONSTRAINTS.video.facingMode = is_front ? "user":{ exact: "environment" };
@@ -51,15 +54,13 @@ function syncCamera(is_front){
   navigator.mediaDevices.getUserMedia(CONSTRAINTS)
     .then( stream => {
     // 成功時にvideo要素にカメラ映像をセットし、再生
-    const videoElm = document.getElementById('my-video');
-    videoElm.muted = true;
-    videoElm.srcObject = stream;
-    videoElm.play();
+    myVideo.muted = true;
+    myVideo.srcObject = stream;
+    myVideo.play();
     // 着信時に相手にカメラ映像を返せるように、グローバル変数に保存しておく
     localStream = stream;
     //キャンバスに自身の映像を描画
-    const canvas = document.getElementById('myCanvas');
-    drawCanvas(canvas, videoElm);
+    drawCanvas();
   }).catch( error => {
     // 失敗時にはエラーログを出力
     console.error('mediaDevice.getUserMedia() error:', error);
@@ -68,13 +69,12 @@ function syncCamera(is_front){
 }
 
 //videoの映像をcanvasに描画する
-function drawCanvas(canvas, video){
+function drawCanvas(){
   //キャンバスを映像のサイズに合わせる
-  canvas.width = video.width;
-  canvas.height = video.height;
+  myCanvas.width = myVideo.width;
+  myCanvas.height = myVideo.height;
   //描画
-  const context = canvas.getContext('2d');
-  context.drawImage(video, 0, 0, canvas.width, canvas.height);
+  context.drawImage(myVideo, 0, 0, myCanvas.width, myCanvas.height);
   requestAnimationFrame(drawCanvas);
 }
 
