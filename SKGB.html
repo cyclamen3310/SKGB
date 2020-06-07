@@ -7,7 +7,7 @@
     <title>カードゲーム用ビデオチャット</title>
     <style>
       #canvasArea {
-        position: absolute;
+        position: relative;
         width: 400px;
         height: 200px;
         margin: 0;
@@ -23,8 +23,21 @@
     <p>
       <video id="my-video" width=400px autoplay muted playsinline></video>
     </p>
-     <!-- カメラ切り替えボタン -->
     <p>
+      <video id="their-video" width="400px" autoplay muted playsinline></video>
+    </p>
+     <!--合成後の表示-->
+    <p id="canvasArea">
+      <canvas id="myCanvas" width="400" height="200"></canvas>
+      <canvas id="theirCanvas" width="400" height="200"></canvas>
+    </p>
+    <!--透過色の決定-->
+    <p>
+      <input id="color" type="color" value="#00ff00" />
+      <input id="distance" type="number" value="100" />
+    </p>
+     <!-- カメラ切り替えボタン -->
+     <p>
       <button type="button" id="btn-toggle">カメラ切替</button>
     </p>
     <table>
@@ -34,25 +47,12 @@
       </tr>
     </table>
     <!-- 発信機能-->
-    <p>
-      <video id="their-video" width="400px" autoplay muted playsinline></video>
-    </p>
     <table>
       <tr>
         <td><textarea id="their-id"></textarea></td> 
         <td><button id="make-call">発信</button></td>
       </tr>
     </table>
-    <!--合成画像-->
-    <!--透過色の決定-->
-    <p>
-      <input id="color" type="color" value="#00ff00" />
-      <input id="distance" type="number" value="30" />
-    </p>
-     <!--合成後の表示-->
-    <p id="canvasArea">
-      <canvas id="myCanvas" width="400" height="200"></canvas>
-    </p>
 </body>
 <script type="text/javascript" src="./script.js"></script>
 </html>
