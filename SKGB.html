@@ -8,14 +8,32 @@
 </head>
 <body>
     <!-- カメラ映像 -->
-    <video id="my-video" width=400px autoplay muted playsinline></video>
-    <p>自身のID</p>
-    <p id="my-id"></p>
-    <!-- カメラ切り替えボタン -->
-    <button type="button" id="btn-toggle">カメラ切替</button>
+    <p>
+      <video id="my-video" width=400px autoplay muted playsinline></video>
+    </p>
+     <!-- カメラ切り替えボタン -->
+    <p>
+      <button type="button" id="btn-toggle">カメラ切替</button>
+    </p>
+    <table>
+      <tr>
+      <td>自身のID： </td>
+      <td id="my-id"></td>
+      </tr>
+    </table>
+    <!-- 発信機能-->
+    <p>
+      <video id="their-video" width="400px" autoplay muted playsinline></video>
+    </p>
+    <table>
+      <tr>
+        <td><textarea id="their-id"></textarea></td> 
+        <td><button id="make-call">発信</button></td>
+      </tr>
+    </table>
 </body>
 <script>
-    // カメラのデフォルト設定
+    // 自身のカメラのデフォルト設定
     var CONSTRAINTS = {
       audio: true,
       video: {
@@ -26,14 +44,14 @@
     //カメラリソース
     let localStream = null;
 
-    //Peer生成
+    //自身のPeer生成
     const peer = (window.peer = new Peer({
       key: "09b3421c-51f8-4448-98b5-0508191f097e",
       debug: 3
     }));
   
     //自PeerId取得
-    peer.once("open", () => {
+    peer.on("open", () => {
       document.getElementById('my-id').textContent = peer.id;
     });
 
@@ -51,7 +69,7 @@
     };
 
     /*
-     カメラ同期
+     自身のカメラ同期
     */
     function syncCamera(is_front){
       //使用するカメラを決定
@@ -63,7 +81,7 @@
         localStream.getVideoTracks().forEach((camera) => {camera.stop();})
       };
 
-      // カメラ映像取得
+      // 自身のカメラ映像取得
       navigator.mediaDevices.getUserMedia(CONSTRAINTS)
         .then( stream => {
         // 成功時にvideo要素にカメラ映像をセットし、再生
@@ -79,5 +97,28 @@
         return;
       });
     }
+
+    // 発信処理
+    document.getElementById('make-call').onclick = () => {
+      const theirID = document.getElementById('their-id').value;
+      const mediaConnection = peer.call(theirID, localStream);
+      setEventListener(mediaConnection);
+    };
+
+    // イベントリスナを設置する関数
+    const setEventListener = mediaConnection => {
+      mediaConnection.on('stream', stream => {
+        // video要素にカメラ映像をセットして再生
+        const videoElm = document.getElementById('their-video')
+        videoElm.srcObject = stream;
+        videoElm.play();
+      });
+    }
+
+    //着信処理
+    peer.on('call', mediaConnection => {
+      mediaConnection.answer(localStream);
+      setEventListener(mediaConnection);
+    });
   </script>
 </html>
