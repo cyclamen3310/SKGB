@@ -47,10 +47,11 @@ function syncCamera(is_front){
   };
 
   // 自身のカメラ映像取得
+  navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia;
   navigator.mediaDevices.getUserMedia(CONSTRAINTS)
     .then( stream => {
     // 成功時にvideo要素にカメラ映像をセットし、再生
-    const videoElm = document.getElementById('my-video')
+    const videoElm = document.getElementById('my-video');
     videoElm.muted = true;
     videoElm.srcObject = stream;
     videoElm.play();
