@@ -96,7 +96,7 @@ function drawCanvas(_video, _canvas, _context){
 
 // 消す色と閾値
 let chromaKeyColor = {r: 0, g: 255, b: 0};
-let colorDistance = 30;
+let colorDistance = 100;
 
 // クロマキー処理
 const chromaKey = function () {
@@ -179,7 +179,7 @@ function drawTheirCanvas(){
   //キャンバスにカメラ映像を描画
   drawCanvas(theirVideo, theirCanvas, theirContext);
   //ループ
-  requestAnimationFrame(drawMyCanvas);
+  requestAnimationFrame(drawTheirCanvas);
 }
 
 // 発信処理
@@ -195,6 +195,8 @@ const setEventListener = mediaConnection => {
     // video要素にカメラ映像をセットして再生
     theirVideo.srcObject = stream;
     theirVideo.play();
+    //キャンバスに相手の映像を描画
+    drawTheirCanvas();
   });
 }
 
