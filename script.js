@@ -1,5 +1,5 @@
 // 自身のカメラのデフォルト設定
-var CONSTRAINTS = {
+const CONSTRAINTS = {
   audio: true,
   video: {
     facingMode: { exact: "environment" } // 初期値はリアカメラ
@@ -57,7 +57,7 @@ function syncCamera(is_front){
     // 着信時に相手にカメラ映像を返せるように、グローバル変数に保存しておく
     localStream = stream;
     //キャンバスに自身の映像を描画
-    var canvas = document.getElementById('myCanvas');
+    const canvas = document.getElementById('myCanvas');
     drawCanvas(canvas, videoElm);
   }).catch( error => {
     // 失敗時にはエラーログを出力
@@ -68,7 +68,11 @@ function syncCamera(is_front){
 
 //videoの映像をcanvasに描画する
 function drawCanvas(canvas, video){
-  var context = canvas.getContext('2d');
+  //キャンバスを映像のサイズに合わせる
+  canvas.width = video.width;
+  canvas.height = vido.height;
+  //描画
+  const context = canvas.getContext('2d');
   context.drawImage(video, 0, 0, canvas.width, canvas.height);
   requestAnimationFrame(draw);
 }
