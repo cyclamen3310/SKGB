@@ -71,7 +71,7 @@ function syncCamera(is_front){
 function drawCanvas(canvas, video){
   //キャンバスを映像のサイズに合わせる
   canvas.width = video.width;
-  canvas.height = vido.height;
+  canvas.height = video.height;
   //描画
   const context = canvas.getContext('2d');
   context.drawImage(video, 0, 0, canvas.width, canvas.height);
