@@ -57,7 +57,7 @@ function syncCamera(is_front){
     // 着信時に相手にカメラ映像を返せるように、グローバル変数に保存しておく
     localStream = stream;
     //キャンバスに自身の映像を描画
-    var canvas = document.getElementById('canvas');
+    var canvas = document.getElementById('myCanvas');
     drawCanvas(canvas, videoElm);
   }).catch( error => {
     // 失敗時にはエラーログを出力
