@@ -5,6 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.webrtc.ecl.ntt.com/skyway-latest.js"></script>
     <title>カードゲーム用ビデオチャット</title>
+    <style>
+      #canvasArea {
+        position: absolute;
+        width: 400px;
+        height: 200px;
+        margin: 0 auto;
+        border: 1px black solid;
+      }
+
+      canvas{
+      position: absolute;
+      }
+    </style>
 </head>
 <body>
     <!-- カメラ映像 -->
@@ -31,6 +44,17 @@
         <td><button id="make-call">発信</button></td>
       </tr>
     </table>
+    <!--合成画像-->
+    <!--透過色の決定-->
+    <p>
+      <input id="color" type="color" value="#00ff00" />
+      <input id="distance" type="number" value="30" />
+    </p>
+     <!--合成後の表示-->
+    <p id="canvasArea">
+      <canvas id="myCanvas" width="400" height="200"></canvas>
+      <canvas id="opponentCanvas" width="400" height="200"></canvas>
+    </p>
 </body>
 <script type="text/javascript" src="./script.js"></script>
 </html>
