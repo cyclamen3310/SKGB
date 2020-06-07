@@ -19,18 +19,6 @@
     </style>
 </head>
 <body>
-    <!-- カメラ映像 -->
-    <p>
-      <video id="my-video" width=400px autoplay muted playsinline></video>
-    </p>
-    <p>
-      <video id="their-video" width="400px" autoplay muted playsinline></video>
-    </p>
-     <!--合成後の表示-->
-    <p id="canvasArea">
-      <canvas id="myCanvas" width="400" height="200"></canvas>
-      <canvas id="theirCanvas" width="400" height="200"></canvas>
-    </p>
     <!--透過色の決定-->
     <p>
       <input id="color" type="color" value="#00ff00" />
@@ -53,6 +41,18 @@
         <td><button id="make-call">発信</button></td>
       </tr>
     </table>
+    <!-- カメラ映像 -->
+    <p>
+      <video id="my-video" width=400px autoplay muted playsinline></video>
+    </p>
+    <p>
+      <video id="their-video" width="400px" autoplay muted playsinline></video>
+    </p>
+     <!--合成後の表示-->
+    <p id="canvasArea">
+      <canvas id="myCanvas" width="400" height="200"></canvas>
+      <canvas id="theirCanvas" width="400" height="200"></canvas>
+    </p>
 </body>
 <script type="text/javascript" src="./script.js"></script>
 </html>
