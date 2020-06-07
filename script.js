@@ -71,9 +71,9 @@ function syncCamera(is_front){
 
 //videoの映像をcanvasに描画する
 function drawCanvas(){
-  //キャンバスを映像のサイズに合わせる
+  //キャンバスを画面サイズに合わせる
   myCanvas.width = window.parent.screen.width;
-  myCanvas.height = window.parent.screen.height;
+  myCanvas.height = (myVideo.height / myVideo.width) * window.parent.screen.width;
   //描画
   context.drawImage(myVideo, 0, 0, myCanvas.width, myCanvas.height);
   requestAnimationFrame(drawCanvas);
