@@ -37,6 +37,7 @@ window.onload = () => {
   自身のカメラ同期
 */
 const myVideo = document.getElementById('my-video');
+myVideo.style.display = 'none';
 const myCanvas = document.getElementById('myCanvas');
 const context = myCanvas.getContext('2d');
 function syncCamera(is_front){
