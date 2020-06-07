@@ -89,7 +89,7 @@ colorDistance = 30;
 
 // クロマキー処理
 var chromaKey = function () {
-var imageData = context.getImageData(0, 0, canvas.width, canvas.height),
+var imageData = context.getImageData(0, 0, myCanvas.width, myCanvas.height),
     data = imageData.data;
 
 // dataはUint8ClampedArray
