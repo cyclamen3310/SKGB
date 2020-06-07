@@ -75,7 +75,7 @@ function drawCanvas(canvas, video){
   //描画
   const context = canvas.getContext('2d');
   context.drawImage(video, 0, 0, canvas.width, canvas.height);
-  requestAnimationFrame(draw);
+  requestAnimationFrame(drawCanvas);
 }
 
 // 発信処理
