@@ -76,13 +76,6 @@ function setVideo(_video, _stream){
   //動画を設定
   _video.srcObject = _stream;
   _video.play();
-  
-  //videoを画面サイズに合わせる
-  if(_video.videoHeight != 0 && _video.videoWidth != 0)
-  {
-    _video.width = window.parent.screen.width;
-    _video.height = (_video.videoHeight / _video.videoWidth) * window.parent.screen.width;
-  }
 }
 
 //自身のカメラの映像をキャンバスに描画
