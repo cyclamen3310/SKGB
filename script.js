@@ -59,7 +59,8 @@ function syncCamera(is_front){
     .then( stream => {
     // 成功時にvideo要素にカメラ映像をセットし、再生
     myVideo.muted = true;
-    setVideo(myVideo, stream);
+    myVideo.srcObject = stream;
+    myVideo.play();
     // 着信時に相手にカメラ映像を返せるように、グローバル変数に保存しておく
     localStream = stream;
     //キャンバスに自身の映像を描画
@@ -69,13 +70,6 @@ function syncCamera(is_front){
     console.error('mediaDevice.getUserMedia() error:', error);
     return;
   });
-}
-
-//video要素の設定をする
-function setVideo(_video, _stream){
-  //動画を設定
-  _video.srcObject = _stream;
-  _video.play();
 }
 
 //自身のカメラの映像をキャンバスに描画
@@ -199,7 +193,8 @@ document.getElementById('make-call').onclick = () => {
 const setEventListener = mediaConnection => {
   mediaConnection.on('stream', stream => {
     // video要素にカメラ映像をセットして再生
-    setVideo(theirVideo, stream);
+    theirVideo.srcObject = stream;
+    theirVideo.play();
     //キャンバスに相手の映像を描画
     drawTheirCanvas();
   });
