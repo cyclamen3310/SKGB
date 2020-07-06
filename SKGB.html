@@ -1,58 +1,58 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://cdn.webrtc.ecl.ntt.com/skyway-latest.js"></script>
-    <title>カードゲーム用ビデオチャット</title>
-    <style>
-      #canvasArea {
-        position: relative;
-        width: 400px;
-        height: 200px;
-        margin: 0;
-      }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>カードゲーム用ビデオチャット</title>
+  <style>
+    #canvasArea {
+      position: relative;
+      width: 400px;
+      height: 200px;
+      margin: 0;
+    }
 
-      canvas{
-      position: absolute;
-      }
-    </style>
+    canvas{
+    position: absolute;
+    }
+  </style>
 </head>
 <body>
-    <!--透過色の決定-->
+  <!--透過色の決定-->
+  <p>
+    <input id="color" type="color" value="#00ff00" />
+    <input id="distance" type="number" value="100" />
+  </p>
+    <!-- カメラ切り替えボタン -->
     <p>
-      <input id="color" type="color" value="#00ff00" />
-      <input id="distance" type="number" value="100" />
-    </p>
-     <!-- カメラ切り替えボタン -->
-     <p>
-      <button type="button" id="btn-toggle">カメラ切替</button>
-    </p>
-    <table>
-      <tr>
-      <td>自身のID： </td>
-      <td id="my-id"></td>
-      </tr>
-    </table>
-    <!-- 発信機能-->
-    <table>
-      <tr>
-        <td><textarea id="their-id"></textarea></td> 
-        <td><button id="make-call">発信</button></td>
-      </tr>
-    </table>
-    <!-- カメラ映像 -->
-    <p>
-      <video id="my-video" width=400px autoplay muted playsinline></video>
-    </p>
-    <p>
-      <video id="their-video" width="400px" autoplay muted playsinline></video>
-    </p>
-     <!--合成後の表示-->
-    <p id="canvasArea">
-      <canvas id="theirCanvas" width="400" height="200"></canvas>
-      <canvas id="myCanvas" width="400" height="200"></canvas>
-    </p>
+    <button type="button" id="btn-toggle">カメラ切替</button>
+  </p>
+  <table>
+    <tr>
+    <td>自身のID： </td>
+    <td id="my-id"></td>
+    </tr>
+  </table>
+  <!-- 発信機能-->
+  <table>
+    <tr>
+      <td><textarea id="their-id"></textarea></td> 
+      <td><button id="make-call">発信</button></td>
+    </tr>
+  </table>
+  <!-- カメラ映像 -->
+  <p>
+    <video id="my-video" width=400px autoplay muted playsinline></video>
+  </p>
+  <p>
+    <video id="their-video" width="400px" autoplay muted playsinline></video>
+  </p>
+    <!--合成後の表示-->
+  <p id="canvasArea">
+    <canvas id="theirCanvas" width="400" height="200"></canvas>
+    <canvas id="myCanvas" width="400" height="200"></canvas>
+  </p>
+  <script src="https://cdn.webrtc.ecl.ntt.com/skyway-latest.js"></script>
+  <script type="text/javascript" src="./script.js"></script>
 </body>
-<script type="text/javascript" src="./script.js"></script>
 </html>
