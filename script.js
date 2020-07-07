@@ -205,3 +205,15 @@ peer.on('call', mediaConnection => {
   mediaConnection.answer(localStream);
   setEventListener(mediaConnection);
 });
+
+//ビデオ回転ボタンクリック時のイベント
+const videoRoll = document.getElementById('my-video-roll');
+videoRoll.addEventListener('click', function() {
+  myVideo.classList.toggle('rollVideo');
+});
+
+//相手のビデオ回転ボタンクリック時のイベント
+const thieirVideoRoll = document.getElementById('their-video-roll');
+thieirVideoRoll.addEventListener('click', function() {
+  thieirVideo.classList.toggle('rollVideo');
+});
